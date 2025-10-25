@@ -24,32 +24,44 @@ To implement Erosion and Dilation using Python and OpenCV.
  
 ## Program:
 
-``` Python
+
 # Import the necessary packages
-
-<img width="1345" height="76" alt="image" src="https://github.com/user-attachments/assets/756d1cd1-6f39-469c-9be4-f5117ce3dc33" />
-
+```
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+```
 
 # Create the Text using cv2.putText
-
-<img width="1290" height="167" alt="image" src="https://github.com/user-attachments/assets/aed2d637-eca3-4fc5-a736-1a7401180784" />
-
-
+```
+img = np.zeros((100, 600, 3), dtype='uint8')  # Black background (RGB: 0, 0, 0)
+font = cv2.FONT_HERSHEY_COMPLEX
+text_color = (255, 255, 255)  # White text (RGB: 255, 255, 255)
+cv2.putText(img, 'JANARTHANAN K', (60, 70), font, 2, text_color, 5, cv2.LINE_AA)
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+```
 # Create the structuring element
 
-<img width="1352" height="75" alt="image" src="https://github.com/user-attachments/assets/572a930e-57de-4ac8-9925-8dd16f6d1c5b" />
-
+```
+kernel = np.ones((5,5),np.uint8)
+kernel1 = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
+cv2.erode(img,kernel)
+```
 
 # Erode the image
-
-<img width="1095" height="91" alt="image" src="https://github.com/user-attachments/assets/16a9f396-668b-4fed-afb6-78b9f46a0e7d" />
-
-
-
+```
+img_erode = cv2.erode(img,kernel1)
+plt.imshow(img_erode)
+plt.axis('off')
+```
 # Dilate the image
 
-
-<img width="1008" height="155" alt="image" src="https://github.com/user-attachments/assets/bcc644f3-d712-4213-91bc-ac7175cb53af" />
+```
+img_dilate = cv2.dilate(img,kernel1)
+plt.imshow(img_dilate)
+plt.axis('off')
 
 
 
